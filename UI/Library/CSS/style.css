@@ -1,0 +1,149 @@
+/*
+
+#DE277A - Pink
+#000 - Black
+#32189D - Dark blue
+#238BEC - Light Blue
+
+*/
+
+
+/* ======== Index Page =======*/
+
+body{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+nav{
+	width: 100%;
+	background-color: #00316b;
+	margin: 0;
+}
+
+ul{
+	width: 60%;
+	margin: 0 auto;
+	padding: 0;
+}
+
+ul li{
+	list-style: none;
+	display: inline-block;
+	padding: 20px;
+}
+
+ul li:hover{
+	background-color: #e91e63;
+}
+
+ul li a{
+	color: #fff;
+	text-decoration: none;
+}
+
+ul li:hover a{
+	color: #000;
+}
+
+.slider{
+	background-color: grey;
+	width: 100%;
+	min-height: 366px;
+	margin: 0;
+}
+
+.slider div{
+	padding: 30px;
+}
+
+.slider p{
+	margin: 0;
+}
+
+.about{
+	/*padding: 30px;*/
+	text-align: center;
+}
+
+.about h1{
+	font-size: 35px;
+}
+
+.footer{
+	background-color: grey;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+/*==== end of index page =====*/
+
+
+/*Authentication forms */
+
+.auth_body{
+	background-color: #DE277A;
+	min-height: 100%;
+	/*border: 2px solid black;*/
+	padding: 10px;
+}
+
+.auth_form{
+	position: relative;
+	width: 31%;
+	height: 100%;
+	background-color: grey;
+	left: 34%;
+	padding: 20px;
+	border-radius: 3px;
+	margin-bottom: 88px;
+}
+
+.auth_header h1{
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 40px;
+}
+
+.form_input{
+	margin: 20px 30px 5px 5px;
+}
+
+.form_input p{
+	text-align: left;
+}
+
+.form_input input[type="text"], input[type="password"], input[type="email"]{
+	transition:0.5s all;
+	background-color: transparent;
+	outline: none;
+	border: 2px solid #fff;
+	padding: 7px 12px;
+	width: 70%;
+	color: #fff;
+}
+
+.form_input input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus{
+	width: 100%;
+	transition: 2s all;
+}
+
+.form_input input[type="submit"]{
+	transition:0.5s all;
+	background-color: #238BEC;
+	outline: none;
+	border: none;
+	padding: 7px 12px;
+	width: 78%;
+	font-size: 15px;
+	color: #000;
+	border-radius: 3px;
+}
+
+.form_input input[type="submit"]:hover{
+	background-color: #00316b;
+	color: #fff;
+}
