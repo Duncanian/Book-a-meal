@@ -147,3 +147,61 @@ ul li:hover a{
 	background-color: #00316b;
 	color: #fff;
 }
+
+/*=== end of authentication ====*/
+
+
+/*===Daily menu =====*/
+
+.menu_header{
+	margin: 20px;
+	text-align: center;
+}
+
+.menu_body{
+	margin: 25px 30px;
+	padding-left: 20px;
+}
+
+.menu_row{
+	width: 100%;
+	margin: 0 0 20px 0;
+}
+
+.menu_row article{
+	width: 23%;
+	display: inline-block;
+	margin: 10px;
+}
+
+.menu_row article img{
+	border-radius: 3px;
+	height: 200px;
+}
+
+.menu_row article input[type="submit"]{
+	transition:0.5s all;
+	background-color: #00316b;
+	outline: none;
+	border: none;
+	padding: 7px 12px;
+	width: 45%;
+	font-size: 15px;
+	color: #fff;
+	border-radius: 3px;
+}
+
+.menu_row article input[type="submit"]:hover{
+	background-color: #e91e63;
+	color: #000;
+}
+
+.menu_row input[type="number"]{
+    color: #000;
+    outline: none;
+    font-size: 0.9em;
+    line-height: 25px;
+    padding: 3px 10px;
+    border: 1px solid #000;
+    margin-bottom: 1em;  
+}
