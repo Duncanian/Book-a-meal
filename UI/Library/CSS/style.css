@@ -17,7 +17,6 @@ body{
 }
 
 nav{
-	width: 100%;
 	background-color: #00316b;
 	margin: 0;
 }
@@ -45,6 +44,40 @@ ul li a{
 
 ul li:hover a{
 	color: #000;
+}
+
+.bar{
+	width: 40px;
+	border: 1px solid red;
+	padding: 0 5px;
+	display: none;
+}
+
+.line{
+	height: 4px;
+	width: 100%;
+	background-color: #fff;
+	margin: 6px 0;
+}
+
+.toggle{
+	display: none;
+}
+
+@media (max-width: 768px){
+	.bar{
+		display: block;
+		cursor: pointer;
+	}
+
+	ul{
+		width: 100%;
+	}
+
+	ul li{
+		display: block;
+		text-align: center;
+	}
 }
 
 .slider{
@@ -205,3 +238,93 @@ ul li:hover a{
     border: 1px solid #000;
     margin-bottom: 1em;  
 }
+
+.add_to_menu{
+	margin-top: 20px;
+}
+
+.menu_row .add_to_menu input[type="submit"]{
+	transition:0.5s all;
+	background-color: #238BEC;
+	outline: none;
+	border: none;
+	padding: 7px 12px;
+	width: 92%;
+	font-size: 15px;
+	color: #000;
+	border-radius: 3px;
+}
+
+.menu_row .add_to_menu input[type="submit"]:hover{
+	background-color: #00316b;
+	color: #fff;
+}
+
+
+/*=== end of user menu ===*/
+
+
+/* ==== Caterer's Meal option management ====*/
+
+.meal_body{
+	background-color: #fff;
+	min-height: 100%;
+	/*border: 2px solid black;*/
+	padding: 10px;
+	color: #fff;
+}
+
+.meal_form{
+	position: relative;
+	width: 31%;
+	height: 100%;
+	background-color: brown;
+	left: 34%;
+	padding: 20px;
+	border-radius: 3px;
+	margin-bottom: 58px;
+}
+
+.meal_header h1{
+	color: #000;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 40px;
+}
+
+
+/* ==== end of meal management ====*/
+
+/* ==== Orders page ====*/
+
+.orders{
+	height: 100%;
+	border: 2px solid red;
+	padding: 20px;
+	margin-bottom: 40px;
+}
+
+.order_table{
+	text-align: center;
+	width: 45%;
+	position: relative;
+	height: 100%;
+	padding: 20px;
+	background-color: brown;
+	left: 23%;
+	color: #fff;
+}
+
+.order_table h1{
+	font-size: 35px;
+}
+
+.order_table table, th, td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+}
+
+.order_table th, td {
+    padding: 12px 7px;
+}
+
