@@ -19,6 +19,23 @@ body{
 nav{
 	background-color: #00316b;
 	margin: 0;
+	text-align: right;
+}
+
+nav h1{
+	margin: 0;
+	color: #fff;
+	text-align: left;
+	position: absolute;
+	top: 20px;
+	left: 70px;
+}
+
+nav label{
+	font-size: 32px;
+	padding: 10px 12px 10px 0;
+	display: none;
+	color: #fff;
 }
 
 ul{
@@ -46,37 +63,29 @@ ul li:hover a{
 	color: #000;
 }
 
-.bar{
-	width: 40px;
-	border: 1px solid red;
-	padding: 0 5px;
-	display: none;
-}
+@media (max-width: 500px){
 
-.line{
-	height: 4px;
-	width: 100%;
-	background-color: #fff;
-	margin: 6px 0;
-}
-
-.toggle{
-	display: none;
-}
-
-@media (max-width: 768px){
-	.bar{
+	nav label{
 		display: block;
 		cursor: pointer;
 	}
 
+	nav label:hover + ul{
+		display: block;
+	}
+
 	ul{
 		width: 100%;
+		display: none;
 	}
 
 	ul li{
 		display: block;
 		text-align: center;
+	}
+
+	nav h1{
+		left: 20px;
 	}
 }
 
