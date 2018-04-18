@@ -10,15 +10,16 @@
 
 	<header>
 		<nav>
-			<div class="bar">
-				<div class="line1"></div>
-				<div class="line2"></div>
-				<div class="line3"></div>
-			</div>
+			<h1>Book-A-Meal</h1>
+			<label for="toggle">&#9776;</label>
+			
 			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Sign up</a></li>
-				<li><a href="#">Sign in</a></li>
+				<a href="loggedin.html"><li>Home</li></a>
+				<a href="booked_meals.html"><li class="active">My Orders</li></a>
+				<a href="menu.html"><li>Menu</li></a>
+				<a href="order_history_u.html"><li>Order History</li></a>
+				<li class="welcome">Welcome Guest</li>
+				<a href="#"><li>Log Out</li></a>
 			</ul>
 		</nav>
 	</header>
@@ -32,9 +33,8 @@
 		<div class="menu_body">
 			<div class="menu_row">
 				<article>
-					<img src="Library/Image/g1.jpg">
 					<h3>Rice and Beans</h3>
-					<input type="number" name="Quantity" value="1">
+					<p>Qty : </p><input type="number" name="Quantity" value="1">
 					<p><em>Ksh : </em>1000</p>
 					<div>
 						<input type="submit" name="Book" value="Edit">
@@ -43,9 +43,8 @@
 				</article>
 
 				<article>
-					<img src="Library/Image/g1.jpg">
 					<h3>Rice and Beans</h3>
-					<input type="number" name="Quantity" value="1">
+					<p>Qty : </p><input type="number" name="Quantity" value="1">
 					<p><em>Ksh : </em>1000</p>
 					<div>
 						<input type="submit" name="Book" value="Edit">
@@ -54,9 +53,8 @@
 				</article>
 
 				<article>
-					<img src="Library/Image/g1.jpg">
 					<h3>Rice and Beans</h3>
-					<input type="number" name="Quantity" value="1">
+					<p>Qty : </p><input type="number" name="Quantity" value="1">
 					<p><em>Ksh : </em>1000</p>
 					<div>
 						<input type="submit" name="Book" value="Edit">
@@ -65,9 +63,18 @@
 				</article>
 
 				<article>
-					<img src="Library/Image/g1.jpg">
 					<h3>Rice and Beans</h3>
-					<input type="number" name="Quantity" value="1">
+					<p>Qty : </p><input type="number" name="Quantity" value="1">
+					<p><em>Ksh : </em>1000</p>
+					<div>
+						<input type="submit" name="Book" value="Edit">
+						<input type="submit" name="Book" value="Remove">
+					</div>
+				</article>
+
+				<article>
+					<h3>Rice and Beans</h3>
+					<p>Qty : </p><input type="number" name="Quantity" value="1">
 					<p><em>Ksh : </em>1000</p>
 					<div>
 						<input type="submit" name="Book" value="Edit">
