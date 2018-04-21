@@ -280,13 +280,13 @@ ul a li:hover{
 
 .menu_row .add_to_menu input[type="submit"]{
 	transition:0.5s all;
-	background-color: #238BEC;
+	background-color: #7F95D1;
 	outline: none;
 	border: none;
 	padding: 7px 12px;
 	width: 92%;
 	font-size: 15px;
-	color: #000;
+	color: #fff;
 	border-radius: 3px;
 }
 
