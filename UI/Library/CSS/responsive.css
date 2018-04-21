@@ -1,0 +1,243 @@
+/*--responsive--*/
+@media(max-width:1680px){
+
+	.landing div{
+		left: 30%;
+	}
+
+}
+
+@media(max-width:1440px){
+	.landing div{
+		left: 27%;
+	}
+}
+
+@media(max-width:1280px){
+	.landing div{
+		left: 25%;
+	}
+}
+@media(max-width:1080px){
+	ul{
+		width: 80%;
+	}
+
+	nav h1{
+		left: 32px;
+	}
+
+    .landing div{
+		left: 20%;
+	}
+
+	.menu_row article{
+		width: 22%;
+	}
+
+	.order_table{
+		width: 54%;
+		left: 22%;
+	}
+
+	.meal_form{
+		width: 35%;
+		left: 31%;
+	}
+
+	.auth_form{
+		width: 33%;
+		left: 32%;
+	}
+}
+
+@media(max-width:991px){
+	.landing div{
+		left: 16%;
+	}
+
+	ul{
+		width: 65%;
+	}
+
+	ul li{
+		padding: 15px;
+	}
+
+	nav h1{
+		left: 28px;
+		top: 14px;
+	}
+
+	.auth_form{
+		width: 35%;
+		left: 30%;
+	}
+}
+
+@media(max-width:854px){
+	.landing div{
+		left: 10%;
+	}
+
+	ul{
+		width: 65%;
+	}
+
+	ul li{
+		padding: 13px;
+	}
+
+	nav h1{
+		left: 8px;
+		top: 12px;
+	}
+
+	.auth_form{
+		width: 43%;
+		left: 26%;
+	}
+
+	.menu_row article{
+		width: 30%;
+	}
+
+	.meal_form{
+		width: 48%;
+		left: 24%;
+	}
+
+	.order_table{
+		width: 64%;
+		left: 16%;
+	}
+}
+
+@media(max-width:736px){
+	nav label{
+		display: block;
+		cursor: pointer;
+	}
+
+	nav label:hover + ul{
+		display: block;
+	}
+
+	ul:hover{
+		display: block;
+	}
+
+	ul{
+		width: 100%;
+		display: none;
+	}
+
+	ul li{
+		display: block;
+		text-align: center;
+	}
+
+	ul a{
+		text-decoration: none;
+	}
+
+	nav h1{
+		top: 20px;
+		left: 70px;
+	}
+
+	.landing div{
+		left: 0;
+	}
+
+	.auth_form{
+		width: 53%;
+		left: 21%;
+	}
+
+	.menu_row article{
+		width: 45%;
+	}
+
+	.menu_row{
+		padding-left: 20px;
+	}
+
+	.meal_form{
+		width: 58%;
+		left: 18%;
+	}
+
+	.order_table{
+		width: 74%;
+		left: 10%;
+	}
+}
+
+@media(max-width:568px){
+	.menu_row{
+		padding:0;
+	}
+}
+@media(max-width:480px){
+	.auth_form{
+		width: 68%;
+		left: 12%;
+	}
+
+	.menu_row article{
+		width: 100%;
+	}
+
+	.meal_form{
+		width: 68%;
+		left: 12%;
+	}
+
+	.orders{
+		padding: 0;
+		margin: 0;
+	}
+
+	.order_table{
+		width: 90%;
+		left: 1%;
+	}
+}
+@media(max-width:414px){
+    .order_table{
+		width: 90.3%;
+		left: 0;
+	}
+
+	.meal_form{
+		width: 78%;
+		left: 6%;
+	}
+
+	.meal_header h1{
+		font-size: 25px;
+	}
+
+	.meal_form p.add_intro{
+		font-size: 16px;
+	}
+
+	.order_table h1{
+		font-size: 21px;
+	}
+}
+
+@media(max-width:375px){
+
+	.auth_form{
+		width: 89%;
+		left: 0;
+	}
+
+	.meal_form{
+		width: 89%;
+		left: 0;
+	}
+}
+/*--responsive--*/
