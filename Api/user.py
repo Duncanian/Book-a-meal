@@ -55,13 +55,46 @@ class User(object):
 		session['logged_in'] = False
 		if session['logged_in'] == False:
 			return 'Log out successful'
-		return 'You were not logged in'
 
 	def get_menu(self):
-		pass
+		return Caterer().menu_list
 
-	def make_order(self):
-		pass
+	def make_order(self, meal_id, meal_name, price, category, day, quantity, username):
+		if meal_id == '' or meal_name == '' or price == '' or category == '' or day == '' or quantity == '' or username == '':
+			return 'Please enter all the details'
 
-	def modify_order(self):
-		pass
+		#Should validate the input data types
+		menus = [menu for menu in Caterer().menu_list if menu["meal_id"] == meal_id and menu['meal_name'] == meal_name]
+		if not menus:
+			return 'Meal doesn\'t exists in menu!'
+
+		self.output['meal_id'] = meal_id
+		self.output['meal_name'] = meal_name
+		self.output['price'] = price
+		self.output['category'] = category
+		self.output['day'] = day
+		self.output['quantity'] = quantity
+		self.output['username'] = username
+		Caterer.order_list.append(self.output)
+		return 'Meal successfully added to your orders'
+
+	def modify_order(self, meal_id, quantity):
+	    #Should validate the input data types
+	    orders = [order for order in Caterer().order_list if order["meal_id"] == meal_id]
+	    if not orders:
+	    	return 'Meal doesn\'t exists in orders!'
+
+	    orde = orders[0]
+	    price = orde["price"]
+
+	    self.output['quantity'] = quantity
+	    self.output['price'] = price * quantity
+	    return 'Order successfully modified'
+
+	def remove_order(self, meal_id):
+		orders = [order for order in Caterer().order_list if order["meal_id"] == meal_id]
+		if not orders:
+			return 'Meal doesn\'t exists in orders!'
+
+		Caterer.order_list.remove(orders[0])
+		return 'Order removed successfully'
