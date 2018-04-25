@@ -1,48 +1,67 @@
-from flask import Flask
+from flask import Flask, request, jsonify, session
+from user import User
+from caterer import Caterer
 
 app = Flask(__name__)
 
-@app.route('api/v1/auth/signup', methods = ['POST'])
+app.config['SECRET_KEY'] = 'super secret'
+
+@app.route('/api/v1/auth/signup', methods = ['POST'])
 def signup():
-	pass
+	new_user = User().signup(request.json['username'], request.json['password'], request.json['user_id'])
+	return jsonify({"user" : new_user})
 
-@app.route('api/v1/auth/login', methods = ['POST'])
+@app.route('/api/v1/auth/login', methods = ['POST'])
 def login():
-	pass
+	auth = request.authorization
 
-@app.route('api/v1/meals', methods = ['GET'])
+	log = User().login(auth.username, auth.password)
+	#log = Caterer().login(auth.username, auth.password)
+
+	return jsonify({"message" : log})
+
+@app.route('/api/v1/auth/logout', methods = ['POST'])
+def logout_user():
+	logouts = User().logout()
+	jsonify({"message":logouts})
+
+@app.route('/api/v1/meals', methods = ['GET'])
 def get_all_meals():
-	pass
+	get_meals = Caterer().get_meals()
+	jsonify({"messages":get_meals})
 
-@app.route('api/v1/meals', methods = ['POST'])
+@app.route('/api/v1/meals', methods = ['POST'])
 def add_meal():
-	pass
+	new_meal = Caterer().post_meal(request.json['meal_id'], request.json['meal_name'], request.json['price'], request.json['category'], request.json['day'])
+	return jsonify({"message":new_meal})
 
-@app.route('api/v1/meals/<mealId>', methods = ['PUT'])
-def modify_meal():
-	pass
+@app.route('/api/v1/meals/<mealId>', methods = ['PUT'])
+def edit_meal(mealId):
+	new_meal = Caterer().modify_meal(mealId, request.json['meal_name'], request.json['price'], request.json['category'], request.json['day'])
+	return jsonify({"message":new_meal})
 
-@app.route('api/v1/meals/<mealId>', methods = ['DELETE'])
-def delete_meals():
-	pass
+@app.route('/api/v1/meals/<mealId>', methods = ['DELETE'])
+def delete_meals(mealId):
+	delete_meal = Caterer().delete_ml(mealId)
+	return jsonify({"message" : delete_meal})
 
-@app.route('api/v1/menu', methods = ['POST'])
+@app.route('/api/v1/menu', methods = ['POST'])
 def setup_menu():
 	pass
 
-@app.route('api/v1/menu', methods = ['GET'])
+@app.route('/api/v1/menu', methods = ['GET'])
 def get_menu():
 	pass
 
-@app.route('api/v1/orders', methods = ['POST'])
+@app.route('/api/v1/orders', methods = ['POST'])
 def make_order():
 	pass
 
-@app.route('api/v1/orders/<orderId>', methods = ['PUT'])
+@app.route('/api/v1/orders/<orderId>', methods = ['PUT'])
 def modify_order():
 	pass
 
-@app.route('api/v1/orders', methods = ['GET'])
+@app.route('/api/v1/orders', methods = ['GET'])
 def get_all_orders():
 	pass
 
