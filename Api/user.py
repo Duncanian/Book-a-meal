@@ -1,9 +1,11 @@
 from flask import session
 from caterer import Caterer
+import datetime
+import jwt
 
 class User(object):
 	"""docstring for Caterer"""
-	users = [{'username' : 'user', 'password' : '12345', 'user_id' : 123, 'admin' : False}]
+	users = [{'username' : 'user', 'password' : '12345', 'user_id' : 123, 'admin' : False}, {'username' : 'admin', 'password' : 'admin', 'user_id' : 1234, 'admin' : True}]
 	def __init__(self):
 		self.output = {}
 
@@ -31,6 +33,7 @@ class User(object):
 		User.users.append(self.output)
 		return 'User successfully created'
 
+
 	def login(self, username, password):
 		if username == '' or password == '':
 			return 'Enter both username and password'
@@ -38,25 +41,24 @@ class User(object):
 		if not isinstance(username, str) or not isinstance(password, str):
 			return 'Please enter a string value for username and password'
 
-		username.lower()
-
-		userz = [user1 for user1 in User().users if user1["username"] == username and user1["admin"] == False]
-		caters = [cater for cater in Caterer().caterer if cater["username"] == username and cater["admin"] == True]
+		userz = [user1 for user1 in User().users if user1["username"] == username and user1["password"] == password]
+		user = userz[0]
 
 		if userz:
-			session["logged_in"] = True
-			return "Loggin successful"
-		else:
-			if caters:
-				session["logged_in"] = True
-				return "Loggin successful, Welcome Admin"
-			else:
-				return 'No such user! Please create an account'
+			token = jwt.encode({
+				"user_id" : user["user_id"], 
+				"exp" : datetime.datetime.utcnow() + datetime.timedelta(minutes = 30)}, 'secret_key')
+			return token.decode('UTF-8')
+			
+		return 'No such user! Please create an account'
 
 	def logout(self):
 		session['logged_in'] = False
 		if session['logged_in'] == False:
 			return 'Log out successful'
+
+	def show_users(self):
+		return User().users
 
 	def get_menu(self):
 		return Caterer().menu_list
