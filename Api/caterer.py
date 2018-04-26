@@ -42,7 +42,7 @@ class Caterer(object):
         modify['day'] = day
         return 'Meal modification successful'
 
-    def delete_meal(self, meal_id):
+    def delete_ml(self, meal_id):
         mea = [meal for meal in Caterer().meal_list if meal["meal_id"] == meal_id]
 
         if not mea:

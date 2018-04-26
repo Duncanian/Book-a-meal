@@ -38,18 +38,20 @@ class User(object):
 		if not isinstance(username, str) or not isinstance(password, str):
 			return 'Please enter a string value for username and password'
 
+		username.lower()
+
 		userz = [user1 for user1 in User().users if user1["username"] == username and user1["admin"] == False]
 		caters = [cater for cater in Caterer().caterer if cater["username"] == username and cater["admin"] == True]
-
-		if not userz and not caters:
-			return 'No such user! Please create an account'
 
 		if userz:
 			session["logged_in"] = True
 			return "Loggin successful"
 		else:
-			session["logged_in"] = True
-			return "Loggin successful, Welcome Admin"
+			if caters:
+				session["logged_in"] = True
+				return "Loggin successful, Welcome Admin"
+			else:
+				return 'No such user! Please create an account'
 
 	def logout(self):
 		session['logged_in'] = False

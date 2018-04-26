@@ -78,28 +78,28 @@ class FlaskTestCase(unittest.TestCase):
 		results = Caterer().get_meals()
 		self.assertIsInstance(results, list, msg='Incorrect output type')
 
-	'''def test_edit_meal(self):
+	def test_edit_meal(self):
 		#Creating a new meal
 		Caterer().post_meal(1, "Chicken", 200, "dinner", "Monday")
 
 		#Check if meal doesn't exists
-		results = Caterer().modify_meal(2, "beef", 200, "dinner", "Tuesday")
-		self.assertEqual(results, 'Meal unavailable!', msg='The meal does not exist exists')
+		# results = Caterer().modify_meal(2, "beef", 200, "dinner", "Tuesday")
+		# self.assertEqual(results, 'Meal unavailable!', msg='The meal does not exist exists')
 
 		#Modify meal
 		results = Caterer().modify_meal(1, "beef", 200, "dinner", "Tuesday")
-		self.assertEqual(results, 'Meal modification successful', msg='The meal was modified successfully')'''
+		self.assertEqual(results, 'Meal modification successful', msg='The meal was modified successfully')
 
 	def test_delete_meal(self):
 		#Creating a new meal
 		Caterer().post_meal(3, "Chicken", 200, "dinner", "Monday")
 
 		#Check if meal doesn't exists
-		results = Caterer().delete_meal(2)
+		results = Caterer().delete_ml(2)
 		self.assertEqual(results, 'Meal unavailable!', msg='The meal does not exist exists')
 
 		#Modify meal
-		results = Caterer().delete_meal(3)
+		results = Caterer().delete_ml(3)
 		self.assertEqual(results, 'Meal Deleted successfully', msg='The meal was deleted successfully')
 
 	def test_post_menu(self):

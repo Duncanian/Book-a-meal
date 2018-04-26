@@ -25,12 +25,12 @@ def logout_user():
 	logouts = User().logout()
 	return jsonify({"message":logouts})
 
-@app.route('/api/v1/meals', methods = ['GET'])
+@app.route('/api/v1/meals/', methods = ['GET'])
 def get_all_meals():
 	get_meals = Caterer().get_meals()
 	return jsonify({"messages":get_meals})
 
-@app.route('/api/v1/meals', methods = ['POST'])
+@app.route('/api/v1/meals/', methods = ['POST'])
 def add_meal():
 	new_meal = Caterer().post_meal(request.json['meal_id'], request.json['meal_name'], request.json['price'], request.json['category'], request.json['day'])
 	return jsonify({"message":new_meal})
@@ -45,24 +45,24 @@ def delete_meals(mealId):
 	delete_meal = Caterer().delete_ml(mealId)
 	return jsonify({"message" : delete_meal})
 
-@app.route('/api/v1/menu', methods = ['POST'])
+@app.route('/api/v1/menu/', methods = ['POST'])
 def setup_menu():
 	post_menu = Caterer().post_menu(request.json['meal_id'], request.json['meal_name'], request.json['price'], request.json['category'], request.json['day'])
 	return jsonify({"messages":post_menu})
 
-@app.route('/api/v1/menu', methods = ['GET'])
+@app.route('/api/v1/menu/', methods = ['GET'])
 def menu_getter():
 	get_menu = User().get_menu()
 	return jsonify({"messages":get_menu})
 
 @app.route('/api/v1/orders', methods = ['POST'])
 def make_orders():
-	new_order = Caterer().make_order(request.json['meal_id'], request.json['meal_name'], request.json['price'], request.json['category'], request.json['day'], request.json['quantity'], request.json['username'])
+	new_order = User().make_order(request.json['meal_id'], request.json['meal_name'], request.json['price'], request.json['category'], request.json['day'], request.json['quantity'], request.json['username'])
 	return jsonify({"messages":new_order})
 
 @app.route('/api/v1/orders/<orderId>', methods = ['PUT'])
 def modify_orders(orderId):
-	mod = Caterer().modify_order(orderId, request.json['quantity'])
+	mod = User().modify_order(orderId, request.json['quantity'])
 	return jsonify({"messages":mod})
 
 @app.route('/api/v1/orders/<orderId>', methods = ['DELETE'])
