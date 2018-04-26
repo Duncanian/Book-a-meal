@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify
 from user import User
 from caterer import Caterer
 from functools import wraps
@@ -11,8 +11,8 @@ def token_required(f):
 	def decorated(*args, **kwargs):
 		token = None
 
-		if 'x-access-token' in request.headers:
-			token = request.headers['x-access-token']
+		if 'Authorization' in request.headers:
+			token = request.headers['Authorization']
 
 		if not token:
 			return jsonify({ "message" : "Token is missing!" }), 401
