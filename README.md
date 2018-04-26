@@ -14,10 +14,9 @@ Navigate to the cloned repo.
 Ensure you have the following:
 
 ```
-1. postgres
-2. python3 & a virtualenv
-3. Flask
-4. Postman
+1. python3 & a virtualenv
+2. Flask
+3. Postman
 ```
 
 Create a virtualenv and activate it. [Refer here](https://docs.python.org/3/tutorial/venv.html)
