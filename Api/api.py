@@ -39,12 +39,12 @@ def users(active_user):
 	return jsonify({"message":users})
 
 @app.route('/api/v1/auth/signup', methods = ['POST'])
-def signup(active_user):
+def signup():
 	new_user = User().signup(request.json['username'], request.json['password'], request.json['user_id'])
 	return jsonify({"user" : new_user})
 
 @app.route('/api/v1/auth/login', methods = ['POST'])
-def login(active_user):
+def login():
 	log = User().login(request.json['username'], request.json['password'])
 	return jsonify({"message" : log})
 

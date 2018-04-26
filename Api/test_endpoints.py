@@ -17,7 +17,7 @@ class TestApiEndpoints(unittest.TestCase):
         response = self.tester.post('/api/v1/auth/signup', data=reg_data, content_type='application/json')
         self.assertEqual(response.status_code, 200)
 
-    '''def test_user_login(self):
+    def test_user_login(self):
         #Test the user login functionality
         #register user first
         reg_data = json.dumps({"user_id":1, "username": "Queer", "password":"#12345", "admin":False})
@@ -27,7 +27,7 @@ class TestApiEndpoints(unittest.TestCase):
         #Login the user
         log_data = json.dumps({"username": "Queer", "password":"#12345"})
         response1 = self.tester.post('/api/v1/auth/login', data=log_data, content_type='application/json')
-        self.assertEqual(response1.status_code, 200)'''
+        self.assertEqual(response1.status_code, 200)
 
     def test_user_can_get_menu(self):
         #Test user access to the menu
