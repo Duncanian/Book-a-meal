@@ -1,25 +1,36 @@
-# Book-a-meal
+### Todo-List API
 
-# About Book-a-meal
-This is a meal booking website that is used by users(customers) alongside with Admins (Caterers). Users should create an account and log in.  After beign authenticated :- they can see the menu for a specific day,  select an option out of the menu,  change their meal choice,  see their order history and get notifications when the menu for the day has been set.  Admin (Caterer) manages meal options in the website. Admin (Caterer) should be able to setup menu for a specific day by selecting from the meal options available on the system. Admin (Caterer) should be able to see the orders made by the user Admin should be able to see amount of money made by end of day Admin (Caterer) should be able to see order history The application should be able to host more than one caterer.
+#### Description
+This is a meal booking website that is used by users(customers) alongside with Admins (Caterers). Users should create an account and log in. After beign authenticated :- they can see the menu for a specific day, select an option out of the menu, change their meal choice, see their order history and get notifications when the menu for the day has been set. Admin (Caterer) manages meal options in the website. Admin (Caterer) should be able to setup menu for a specific day by selecting from the meal options available on the system. Admin (Caterer) should be able to see the orders made by the user Admin should be able to see amount of money made by end of day Admin (Caterer) should be able to see order history The application should be able to host more than one caterer.
 
+### Development
 
-# Github Pages links
-1. https://duncanian.github.io/gh-pages/ <----> when logged out
-2. https://duncanian.github.io/gh-pages/loggedin.html <----> when logged in as a user
-3. https://duncanian.github.io/gh-pages/meal_management.html <----> when logged in as an admin (Caterer)
+Clone the repository: 
 
+```git clone https://github.com/Duncanian/Book-a-meal.git```
 
-# Book a meal set up
-1. Ensure your computer has git installed or visit https://git-scm.com/downloads to download and install git depending on your operating system
+Navigate to the cloned repo. 
 
-2. Clone the Book-a-meal repository from https://github.com/Duncanian/Book-a-meal.git
-Use this command --> git clone https://github.com/Duncanian/Book-a-meal.git
+Ensure you have the following:
 
-3. Navigate to your cloned directory name Book-a-meal then to the UI directory
-Use this command --> cd Book-a-meal/UI
+```
+1. postgres
+2. python3 & a virtualenv
+3. Flask
+4. Postman
+```
 
-4. You will be in access of the html files and open the index.html on your browser(preferrably Chrome)
-The index.html file will show you the UI when you are logged out
-The loggedin.html file will show you the UI when you are logged in as a user
-The meal_management.html file will show you the UI when you are logged in as an Admin(Caterer)
+Create a virtualenv and activate it. [Refer here](https://docs.python.org/3/tutorial/venv.html)
+
+### Dependencies
+- Install the project dependencies:
+> $ pip install -r requirements.txt
+
+After setting up the above. Run:
+
+```python api.py```
+
+Test the endpoints registered on `api.py` on Postman/curl on the port the app is running on. 
+
+#### Contribution
+Fork the repo, create a PR to this repository's develop.
