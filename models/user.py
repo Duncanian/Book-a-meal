@@ -1,5 +1,4 @@
-from flask import session
-from caterer import Caterer
+from .caterer import Caterer
 import datetime
 import jwt
 

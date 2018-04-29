@@ -1,7 +1,7 @@
 import unittest
 from api import *
-from user import User
-from caterer import Caterer
+from models.user import User
+from models.caterer import Caterer
 
 class FlaskTestCase(unittest.TestCase):
 	"""docstring for FlaskTestCase"""
