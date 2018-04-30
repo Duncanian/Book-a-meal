@@ -182,4 +182,5 @@ def get_all_orders(active_user):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='', PORT=5000)
+    
