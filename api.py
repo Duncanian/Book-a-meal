@@ -1,4 +1,5 @@
 import jwt
+import os
 from models.user import User
 from functools import wraps
 from flask import Flask, request, jsonify
@@ -182,5 +183,6 @@ def get_all_orders(active_user):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='', port=5000)
+    PORT = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='', port=PORT)
 
