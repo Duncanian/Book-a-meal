@@ -26,7 +26,7 @@ def token_required(f):
                       == data["user_id"]]
             active_user = active[0]
         except:
-            return jsonify({"message": "Token is Invalid!"}), 401
+            return jsonify({"message": "Token is Invalid!"}), 400
 
         return f(active_user, *args, **kwargs)
 
@@ -48,25 +48,23 @@ def users(active_user):
 @app.route('/api/v1/auth/signup', methods=['POST'])
 def signup():
     '''Sign up'''
-    new_user = User().signup(
-        request.json['username'], request.json['password'], request.json['user_id'])
+    if request.json:
+        new_user = User().signup(request.json['username'], request.json['password'], request.json['user_id'])
+        return jsonify({"user": new_user})
+
+    new_user = User().signup(request.form.get('username'), request.form.get('password'), request.form.get('user_id'))
     return jsonify({"user": new_user})
 
 
 @app.route('/api/v1/auth/login', methods=['POST'])
 def login():
     '''Login'''
-    log = User().login(request.json['username'], request.json['password'])
+    if request.json:
+        log = User().login(request.json['username'], request.json['password'])
+        return jsonify({"message": log})
+
+    log = User().login(request.form.get('username'), request.form.get('password'))
     return jsonify({"message": log})
-
-
-@app.route('/api/v1/auth/logout', methods=['POST'])
-@token_required
-def logout_user(active_user):  # pylint:disable=unused-argument
-    '''Log out'''
-    logouts = User().logout()
-    return jsonify({"message": logouts})
-
 
 @app.route('/api/v1/meals/', methods=['GET'])
 @token_required
@@ -86,24 +84,34 @@ def add_meal(active_user):
     if not active_user['admin']:
         return 'Only available for Admin!'
 
-    new_meal = Caterer().post_meal(request.json['meal_id'], request.json['meal_name'],
+    if request.json:
+        new_meal = Caterer().post_meal(request.json['meal_id'], request.json['meal_name'],
                                    request.json['price'], request.json['category'], request.json['day'])
+        return jsonify({"message": new_meal})
+
+    new_meal = Caterer().post_meal(request.form.get('meal_id'), request.form.get('meal_name'),
+                                   request.form.get('price'), request.form.get('category'), request.form.get('day'))
     return jsonify({"message": new_meal})
 
 
-@app.route('/api/v1/meals/<mealId>', methods=['PUT'])
+@app.route('/api/v1/meals/<int:mealId>', methods=['PUT'])
 @token_required
 def edit_meal(active_user, mealId):
     '''Edit meal'''
     if not active_user['admin']:
         return 'Only available for Admin!'
 
-    new_meal = Caterer().modify_meal(mealId,
+    if request.json:
+        new_meal = Caterer().modify_meal(mealId,
                                      request.json['meal_name'], request.json['price'], request.json['category'], request.json['day'])
+        return jsonify({"message": new_meal})
+
+    new_meal = Caterer().modify_meal(mealId, request.form.get('meal_name'), 
+                                     request.form.get('price'), request.form.get('category'), request.form.get('day'))
     return jsonify({"message": new_meal})
 
 
-@app.route('/api/v1/meals/<mealId>', methods=['DELETE'])
+@app.route('/api/v1/meals/<int:mealId>', methods=['DELETE'])
 @token_required
 def delete_meals(active_user, mealId):
     '''Delete meal'''
@@ -121,8 +129,13 @@ def setup_menu(active_user):
     if not active_user['admin']:
         return 'Only available for Admin!'
 
-    post_menu = Caterer().post_menu(request.json['meal_id'], request.json['meal_name'],
+    if request.json:
+        post_menu = Caterer().post_menu(request.json['meal_id'], request.json['meal_name'],
                                     request.json['price'], request.json['category'], request.json['day'])
+        return jsonify({"messages": post_menu})
+
+    post_menu = Caterer().post_menu(request.form.get('meal_id'), request.form.get('meal_name'),
+                                   request.form.get('price'), request.form.get('category'), request.form.get('day'))
     return jsonify({"messages": post_menu})
 
 
@@ -144,23 +157,31 @@ def make_orders(active_user):
     if active_user['admin']:
         return 'Only available for users!'
 
-    new_order = User().make_order(request.json['meal_id'], request.json['meal_name'], request.json['price'],
+    if request.json:
+        new_order = User().make_order(request.json['meal_id'], request.json['meal_name'], request.json['price'],
                                   request.json['category'], request.json['day'], request.json['quantity'], request.json['username'])
+        return jsonify({"messages": new_order})
+
+    new_order = User().make_order(request.form.get('meal_id'), request.form.get('meal_name'), request.form.get('price'), 
+                    request.form.get('category'), request.form.get('day'), request.form.get('quantity'), request.form.get('username'))
     return jsonify({"messages": new_order})
 
 
-@app.route('/api/v1/orders/<orderId>', methods=['PUT'])
+@app.route('/api/v1/orders/<int:orderId>', methods=['PUT'])
 @token_required
 def modify_orders(active_user, orderId):
     '''Modify orders'''
     if active_user['admin']:
         return 'Only available for users!'
 
-    mod = User().modify_order(orderId, request.json['quantity'])
+    if request.json:
+        mod = User().modify_order(orderId, request.json['quantity'])
+        return jsonify({"messages": mod})
+    mod = User().modify_order(orderId, request.form.get('quantity'))
     return jsonify({"messages": mod})
 
 
-@app.route('/api/v1/orders/<orderId>', methods=['DELETE'])
+@app.route('/api/v1/orders/<int:orderId>', methods=['DELETE'])
 @token_required
 def delete_orders(active_user, orderId):
     '''Delete orders'''
@@ -185,4 +206,3 @@ def get_all_orders(active_user):
 if __name__ == "__main__":
     PORT = int(os.environ.get('PORT', 5000))
     app.run(debug=True, host='', port=PORT)
-
