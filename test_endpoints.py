@@ -27,8 +27,9 @@ class TestApiEndpoints(unittest.TestCase):
         }
 
     def test_get_users(self):
+        '''Get active users(GET)'''
         #Test user access to the menu
-        response = self.tester.get('/api/v1/users', headers = self.headers)
+        response = self.tester.get('/api/v1/users', headers=self.headers)
         self.assertEqual(response.status_code, 200)
 
     #User activities
@@ -40,6 +41,7 @@ class TestApiEndpoints(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_user_login(self):
+        '''Test user login(POST)'''
         #Test the user login functionality
         #register user first
         reg_data = json.dumps({"user_id":1, "username": "Queer", "password":"#12345", "admin":False})
@@ -52,82 +54,109 @@ class TestApiEndpoints(unittest.TestCase):
         self.assertEqual(response1.status_code, 200)
 
     def test_user_can_get_menu(self):
+        '''Users can get access to the menu(GET)'''
         #Test user access to the menu
-        response = self.tester.get('/api/v1/menu/', headers = self.headers)
+        response = self.tester.get('/api/v1/menu/', headers=self.headers)
         self.assertEqual(response.status_code, 200)
 
     def test_user_can_make_an_order(self):
+        '''Users can make an order from available meals(POST)'''
         #Test the user's order capability
         meal_data = json.dumps({"meal_id":1, "meal_name": "Rice", "price":200, "category":"dinner", "day":"none"})
-        response = self.tester.post('/api/v1/meals/', data=meal_data, headers = self.headers)
+        response = self.tester.post('/api/v1/meals/', data=meal_data, headers=self.headers)
         self.assertEqual(response.status_code, 200)
 
-        setup = self.tester.post('/api/v1/menu/', data=meal_data, headers = self.headers)
+        setup = self.tester.post('/api/v1/menu/', data=meal_data, headers=self.headers)
         self.assertEqual(setup.status_code, 200)
 
-        get_menu = self.tester.get('/api/v1/menu/', headers = self.headers)
+        get_menu = self.tester.get('/api/v1/menu/', headers=self.headers)
         self.assertEqual(get_menu.status_code, 200)
 
         order_data = json.dumps({"meal_id":1, "meal_name": "Rice", "price":200, "category":"dinner", "day":"none", "quantity":1, "username":"ian"})
 
-        make_order = self.tester.post('/api/v1/orders', data=order_data, headers = self.headers)
+        make_order = self.tester.post('/api/v1/orders', data=order_data, headers=self.headers)
         self.assertEqual(make_order.status_code, 200)
 
     def test_user_can_modify_an_order(self):
+        '''Test a user can modify an order(PUT)'''
         #Test the edit order ability
         meal_data = json.dumps({"meal_id":1, "meal_name": "Rice", "price":200, "category":"dinner", "day":"none"})
-        response = self.tester.post('/api/v1/meals/', data=meal_data, headers = self.headers)
+        response = self.tester.post('/api/v1/meals/', data=meal_data, headers=self.headers)
         self.assertEqual(response.status_code, 200)
 
-        setup = self.tester.post('/api/v1/menu/', data=meal_data, headers = self.headers)
-        self.assertEqual(response.status_code, 200)
+        setup = self.tester.post('/api/v1/menu/', data=meal_data, headers=self.headers)
+        self.assertEqual(setup.status_code, 200)
 
         order_data = json.dumps({"meal_id":1, "meal_name": "Rice", "price":200, "category":"dinner", "day":"none", "quantity":1, "username":"ian"})
 
-        make_order = self.tester.post('/api/v1/orders', data=order_data, headers = self.headers)
+        make_order = self.tester.post('/api/v1/orders', data=order_data, headers=self.headers)
         self.assertEqual(make_order.status_code, 200)
 
         mod_order = json.dumps({"quantity": 3})
-        res = self.tester.put('/api/v1/orders/1', data=mod_order, headers = self.headers)
+        res = self.tester.put('/api/v1/orders/1', data=mod_order, headers=self.headers)
+        self.assertEqual(res.status_code, 200)
+
+    def test_user_can_delete_an_order(self):
+        '''Test a user can delete an order(PUT)'''
+        #Test the delete order ability
+        meal_data = json.dumps({"meal_id":1, "meal_name": "Rice", "price":200, "category":"dinner", "day":"none"})
+        response = self.tester.post('/api/v1/meals/', data=meal_data, headers=self.headers)
+        self.assertEqual(response.status_code, 200)
+
+        setup = self.tester.post('/api/v1/menu/', data=meal_data, headers=self.headers)
+        self.assertEqual(setup.status_code, 200)
+
+        order_data = json.dumps({"meal_id":1, "meal_name": "Rice", "price":200, "category":"dinner", "day":"none", "quantity":1, "username":"ian"})
+
+        make_order = self.tester.post('/api/v1/orders', data=order_data, headers=self.headers)
+        self.assertEqual(make_order.status_code, 200)
+
+        res = self.tester.delete('/api/v1/orders/1', headers=self.headers)
         self.assertEqual(res.status_code, 200)
 
     def test_caterer_get_all_meal_options(self):
+        '''Test a caterer can get all meal options(GET)'''
         #test that api can get all books (GET request)
-        response1 = self.tester.get('/api/v1/meals/', headers = self.headers)
+        response1 = self.tester.get('/api/v1/meals/', headers=self.headers)
         self.assertEqual(response1.status_code, 200)
 
     def test_caterer_can_add_a_meal_option(self):
+        '''Test a caterer can add a meal option(POST)'''
         meal_data = json.dumps({"meal_id":1, "meal_name": "Rice", "price":200, "category":"dinner", "day":"none"})
-        response = self.tester.post('/api/v1/meals/', data=meal_data, headers = self.headers)
+        response = self.tester.post('/api/v1/meals/', data=meal_data, headers=self.headers)
         self.assertEqual(response.status_code, 200)
 
     def test_caterer_can_update_meal_option_by_id(self):
+        '''Test a caterer can update meal option(PUT)'''
         meal_data = json.dumps({"meal_id":1, "meal_name": "Rice", "price":200, "category":"dinner", "day":"none"})
-        response = self.tester.post('/api/v1/meals/', data=meal_data, headers = self.headers)
+        response = self.tester.post('/api/v1/meals/', data=meal_data, headers=self.headers)
         self.assertEqual(response.status_code, 200)
 
         update_data = json.dumps({"meal_name": "Meat", "price":210, "category":"lunch", "day":"Monday"})
-        res = self.tester.put('/api/v1/meals/1', data=update_data, headers = self.headers)
+        res = self.tester.put('/api/v1/meals/1', data=update_data, headers=self.headers)
         self.assertEqual(res.status_code, 200)
 
     def test_caterer_can_delete_meal_option_by_id(self):
+        '''Test a caterer can delete a meal(DELETE)'''
         meal_data = json.dumps({"meal_id":8, "meal_name": "Rice", "price":200, "category":"dinner", "day":"none"})
-        response = self.tester.post('/api/v1/meals/', data=meal_data, headers = self.headers)
+        response = self.tester.post('/api/v1/meals/', data=meal_data, headers=self.headers)
         self.assertEqual(response.status_code, 200)
 
-        res = self.tester.delete('/api/v1/meals/8', headers = self.headers)
+        res = self.tester.delete('/api/v1/meals/8', headers=self.headers)
         self.assertEqual(res.status_code, 200)
 
     def test_caterer_can_setup_menu(self):
+        '''Test a caterer can set up a menu(POST)'''
         meal_data = json.dumps({"meal_id":1, "meal_name": "Rice", "price":200, "category":"dinner", "day":"none"})
-        response = self.tester.post('/api/v1/meals/', data=meal_data, headers = self.headers)
+        response = self.tester.post('/api/v1/meals/', data=meal_data, headers=self.headers)
         self.assertEqual(response.status_code, 200)
 
-        setup = self.tester.post('/api/v1/menu/', data=meal_data, headers = self.headers)
+        setup = self.tester.post('/api/v1/menu/', data=meal_data, headers=self.headers)
         self.assertEqual(setup.status_code, 200)
 
     def test_caterer_can_get_orders(self):
-        res = self.tester.get('/api/v1/orders', headers = self.headers)
+        '''Test a caterer can get orders made(GET)'''
+        res = self.tester.get('/api/v1/orders', headers=self.headers)
         self.assertEqual(res.status_code, 200)
 
 if __name__ == "__main__":

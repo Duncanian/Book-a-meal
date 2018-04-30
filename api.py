@@ -1,7 +1,7 @@
+import jwt
 from models.user import User
 from functools import wraps
 from flask import Flask, request, jsonify
-import jwt
 from models.caterer import Caterer
 
 app = Flask(__name__)
@@ -166,7 +166,7 @@ def delete_orders(active_user, orderId):
     if active_user['admin']:
         return 'Only available for users!'
 
-    delete = Caterer().remove_order(orderId)
+    delete = User().remove_order(orderId)
     return jsonify({"messages": delete})
 
 
