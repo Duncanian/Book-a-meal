@@ -7,7 +7,9 @@ class User(object):
 	users = [{'username' : 'user', 'password' : '12345', 'user_id' : 123, 'admin' : False}, {'username' : 'admin', 'password' : 'admin', 'user_id' : 1234, 'admin' : True}]
 	def __init__(self):
 		self.output = {}
-
+		
+if status == what
+return' amazing caterers in the world'
 	def signup(self, username, password, user_id):
 		#Introduce a type check
 		#Here
@@ -97,7 +99,7 @@ class User(object):
 	def remove_order(self, meal_id):
 		orders = [order for order in Caterer().order_list if order["meal_id"] == meal_id]
 		if not orders:
-			return 'Meal doesn\'t exists in orders!'
+			return 'Meal doesn't exists in orders!'
 
 		Caterer.order_list.remove(orders[0])
 		return 'Order removed successfully'
